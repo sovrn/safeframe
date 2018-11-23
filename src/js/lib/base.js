@@ -36,7 +36,7 @@ if (window["$sf"]) {
 
 	}
 } else {
-	var $sf = { 
+	var $sf = {
 		ver: "1-1-1",
 		specVersion: "1.1"
 	};
@@ -662,7 +662,7 @@ if (window["$sf"]) {
 
 	function es(str) { return escape(str); }
 	function ues(str) { return unescape(str); }
-	
+
 	/**
 	 * Calls indexOf method on strings, mainly used to save space during
 	 * compression
@@ -1440,9 +1440,11 @@ if (window["$sf"]) {
 			var id = attr(el,"id"), oldCB;
 
 			oldCB = (id && iframe_cbs_attached[id]);
+
 			if (oldCB) {
 				detach(el, "load", oldCB);
 				iframe_cbs_attached[id] = NULL;
+				setTimeout(oldCB.bind(null, {target: el}), 500);
 				delete iframe_cbs_attached[id];
 			}
 		}
